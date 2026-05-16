@@ -26,7 +26,7 @@ const COPY = {
     planAnnualNote: 'Save 35% — just $3.25/month',
     planMonthlyNote: 'Cancel anytime',
     schoolTier: 'School / Counselor License',
-    schoolNote: 'Up to 35 students · Classroom access code · Contact us',
+    schoolNote: 'Up to 25 students · Classroom access code',
     contactUs: 'Contact us',
     dismiss: 'Not today',
     featuredTitle: 'Everything a student needs to plan their future',
@@ -93,7 +93,7 @@ const COPY = {
     planAnnualNote: 'Ahorra 35% — solo $3.25/mes',
     planMonthlyNote: 'Cancela cuando quieras',
     schoolTier: 'Licencia Escolar / Consejero',
-    schoolNote: 'Hasta 35 estudiantes · Código de acceso · Contáctanos',
+    schoolNote: 'Hasta 25 estudiantes · Código de acceso de clase',
     contactUs: 'Contáctanos',
     dismiss: 'Hoy no',
     featuredTitle: 'Todo lo que un estudiante necesita para planear su futuro',
@@ -379,6 +379,96 @@ export default function GoalGardenAI() {
                     </div>
                   ))}
                 </div>
+              </div>
+            </section>
+
+            {/* ── PRICING SECTION ── */}
+            <section className="pricing-section">
+              <div className="pricing-inner">
+                <p className="section-label">{lang === 'en' ? 'Pricing' : 'Precios'}</p>
+                <h2 className="pricing-title">
+                  {lang === 'en' ? 'Start free. Upgrade when you\'re ready.' : 'Empieza gratis. Actualiza cuando estés listo.'}
+                </h2>
+                <p className="pricing-sub">
+                  {lang === 'en' ? 'Every student gets 2 free questions. No account, no credit card.' : 'Cada estudiante obtiene 2 preguntas gratis. Sin cuenta, sin tarjeta.'}
+                </p>
+
+                <div className="pricing-grid">
+
+                  {/* Free */}
+                  <div className="price-card">
+                    <div className="price-tier">{lang === 'en' ? 'Free' : 'Gratis'}</div>
+                    <div className="price-amount">$0</div>
+                    <div className="price-period">{lang === 'en' ? 'forever' : 'siempre'}</div>
+                    <ul className="price-features">
+                      <li>✓ {lang === 'en' ? '2 questions to try it out' : '2 preguntas para probarlo'}</li>
+                      <li>✓ {lang === 'en' ? 'All 4 modes' : 'Los 4 modos'}</li>
+                      <li>✓ {lang === 'en' ? 'English + Spanish' : 'Inglés + Español'}</li>
+                      <li>✓ {lang === 'en' ? 'No account needed' : 'Sin cuenta'}</li>
+                    </ul>
+                    <button className="price-btn price-btn-outline" onClick={() => goToChat('career')}>
+                      {lang === 'en' ? 'Try it now' : 'Pruébalo ahora'}
+                    </button>
+                  </div>
+
+                  {/* Monthly */}
+                  <div className="price-card price-card-featured">
+                    <div className="price-popular-badge">{lang === 'en' ? 'Most popular' : 'Más popular'}</div>
+                    <div className="price-tier">{lang === 'en' ? 'Monthly' : 'Mensual'}</div>
+                    <div className="price-amount">$4.99</div>
+                    <div className="price-period">{lang === 'en' ? 'per month' : 'por mes'}</div>
+                    <ul className="price-features">
+                      <li>✓ {lang === 'en' ? 'Unlimited questions' : 'Preguntas ilimitadas'}</li>
+                      <li>✓ {lang === 'en' ? 'All 4 modes' : 'Los 4 modos'}</li>
+                      <li>✓ {lang === 'en' ? 'Essay feedback' : 'Retroalimentación de ensayos'}</li>
+                      <li>✓ {lang === 'en' ? 'Live salary & college data' : 'Datos de salarios y universidades'}</li>
+                      <li>✓ {lang === 'en' ? 'Cancel anytime' : 'Cancela cuando quieras'}</li>
+                    </ul>
+                    <a href={process.env.NEXT_PUBLIC_STRIPE_MONTHLY_LINK || '#'} className="price-btn price-btn-primary" target="_blank" rel="noopener noreferrer">
+                      {lang === 'en' ? 'Get started →' : 'Comenzar →'}
+                    </a>
+                  </div>
+
+                  {/* Annual */}
+                  <div className="price-card">
+                    <div className="price-save-badge">{lang === 'en' ? 'Save 35%' : 'Ahorra 35%'}</div>
+                    <div className="price-tier">{lang === 'en' ? 'Annual' : 'Anual'}</div>
+                    <div className="price-amount">$3.25</div>
+                    <div className="price-period">{lang === 'en' ? '/mo · billed $39/year' : '/mes · $39/año'}</div>
+                    <ul className="price-features">
+                      <li>✓ {lang === 'en' ? 'Everything in Monthly' : 'Todo lo de Mensual'}</li>
+                      <li>✓ {lang === 'en' ? '2 months free' : '2 meses gratis'}</li>
+                      <li>✓ {lang === 'en' ? 'Best value' : 'Mejor valor'}</li>
+                      <li>✓ {lang === 'en' ? 'Priority support' : 'Soporte prioritario'}</li>
+                    </ul>
+                    <a href={process.env.NEXT_PUBLIC_STRIPE_ANNUAL_LINK || '#'} className="price-btn price-btn-outline" target="_blank" rel="noopener noreferrer">
+                      {lang === 'en' ? 'Save 35% →' : 'Ahorrar 35% →'}
+                    </a>
+                  </div>
+
+                  {/* School */}
+                  <div className="price-card price-card-school">
+                    <div className="price-tier">🏫 {lang === 'en' ? 'School / Counselor' : 'Escuela / Consejero'}</div>
+                    <div className="price-amount">$149</div>
+                    <div className="price-period">{lang === 'en' ? 'per classroom / year' : 'por salón / año'}</div>
+                    <ul className="price-features">
+                      <li>✓ {lang === 'en' ? 'Up to 25 students' : 'Hasta 25 estudiantes'}</li>
+                      <li>✓ {lang === 'en' ? 'Classroom access code' : 'Código de acceso para la clase'}</li>
+                      <li>✓ {lang === 'en' ? 'All 4 modes for every student' : 'Los 4 modos para cada estudiante'}</li>
+                      <li>✓ {lang === 'en' ? 'Bilingual English + Spanish' : 'Bilingüe Inglés + Español'}</li>
+                      <li>✓ {lang === 'en' ? 'School-wide license available' : 'Licencia escolar disponible'}</li>
+                    </ul>
+                    <a href="mailto:hello@goalgardenai.com?subject=School%20License%20Inquiry" className="price-btn price-btn-school">
+                      {lang === 'en' ? 'Contact us →' : 'Contáctanos →'}
+                    </a>
+                  </div>
+
+                </div>
+                <p className="pricing-note">
+                  {lang === 'en'
+                    ? '💡 That\'s roughly 1 question per cent for Monthly subscribers.'
+                    : '💡 Eso es aproximadamente 1 pregunta por centavo para suscriptores mensuales.'}
+                </p>
               </div>
             </section>
 
