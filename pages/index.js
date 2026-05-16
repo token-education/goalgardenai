@@ -33,14 +33,14 @@ const COPY = {
     features: [
       { icon: '🌱', title: 'Career exploration', desc: 'Discover careers that match your strengths, interests, and the life you want.' },
       { icon: '🎓', title: 'College planning', desc: 'Compare schools, understand financial aid, and build a smart application strategy.' },
+      { icon: '🏆', title: 'Scholarship finder', desc: 'Tell us about yourself — we search live data to find scholarships you actually qualify for, with deadlines and links.' },
       { icon: '✍️', title: 'Essay coaching', desc: 'Get specific, encouraging feedback on college essays, scholarship essays, and personal statements.' },
       { icon: '🎤', title: 'Interview prep', desc: 'Practice interviews, write your first resume, and build real confidence.' },
       { icon: '🌎', title: 'English + Spanish', desc: 'Fully bilingual — switch languages anytime.' },
-      { icon: '🔍', title: 'Live data', desc: 'Up-to-date salary data, school stats, and job market trends.' },
     ],
     modes: {
       career:    { label: 'Career Exploration', icon: '🌱', desc: 'Find careers that fit your future' },
-      college:   { label: 'College Planning',   icon: '🎓', desc: 'Schools, aid & applications' },
+      college:   { label: 'College Planning',   icon: '🎓', desc: 'Schools, scholarships, aid & applications' },
       essay:     { label: 'Essay Coach',        icon: '✍️', desc: 'Essays, drafts & personal statements' },
       interview: { label: 'Interview Prep',     icon: '🎤', desc: 'Practice & build confidence' },
     },
@@ -52,9 +52,9 @@ const COPY = {
         'Trade school vs. college — which makes more sense for me?',
       ],
       college: [
+        'Help me find scholarships I actually qualify for — where do I start?',
         'What GPA and SAT do I need for UCLA?',
-        'What scholarships exist for first-generation students?',
-        'Compare community college vs. 4-year university — costs and outcomes',
+        'What scholarships exist for first-generation Latino students in Texas?',
         'Walk me through the FAFSA — what do I need to know?',
       ],
       essay: [
@@ -100,14 +100,14 @@ const COPY = {
     features: [
       { icon: '🌱', title: 'Exploración de carreras', desc: 'Descubre carreras que coincidan con tus fortalezas, intereses y la vida que quieres.' },
       { icon: '🎓', title: 'Planificación universitaria', desc: 'Compara universidades, entiende la ayuda financiera y construye tu estrategia de solicitud.' },
+      { icon: '🏆', title: 'Buscador de becas', desc: 'Cuéntanos sobre ti — buscamos en datos actuales para encontrar becas para las que realmente calificas, con fechas límite y enlaces.' },
       { icon: '✍️', title: 'Coach de ensayos', desc: 'Recibe retroalimentación específica y alentadora sobre ensayos universitarios y declaraciones personales.' },
       { icon: '🎤', title: 'Preparación para entrevistas', desc: 'Practica entrevistas, escribe tu primer currículum y construye confianza real.' },
       { icon: '🌎', title: 'Inglés + Español', desc: 'Completamente bilingüe — cambia de idioma en cualquier momento.' },
-      { icon: '🔍', title: 'Datos actualizados', desc: 'Salarios, estadísticas universitarias y tendencias del mercado laboral.' },
     ],
     modes: {
       career:    { label: 'Exploración de Carreras',      icon: '🌱', desc: 'Encuentra carreras para tu futuro' },
-      college:   { label: 'Planificación Universitaria',  icon: '🎓', desc: 'Universidades, ayuda y solicitudes' },
+      college:   { label: 'Planificación Universitaria',  icon: '🎓', desc: 'Universidades, becas, ayuda y solicitudes' },
       essay:     { label: 'Coach de Ensayos',             icon: '✍️', desc: 'Ensayos, borradores y declaraciones' },
       interview: { label: 'Preparación para Entrevistas', icon: '🎤', desc: 'Practica y construye confianza' },
     },
@@ -119,9 +119,9 @@ const COPY = {
         '¿Escuela técnica vs. universidad — cuál tiene más sentido para mí?',
       ],
       college: [
+        'Ayúdame a encontrar becas para las que realmente califico — ¿por dónde empiezo?',
         '¿Qué GPA y SAT necesito para UCLA?',
-        '¿Qué becas existen para estudiantes de primera generación?',
-        'Compara el colegio comunitario vs. la universidad de 4 años — costos y resultados',
+        '¿Qué becas hay para estudiantes latinos de primera generación en Texas?',
         'Explícame el FAFSA — ¿qué necesito saber?',
       ],
       essay: [
@@ -420,6 +420,7 @@ export default function GoalGardenAI() {
                     <ul className="price-features">
                       <li>✓ {lang === 'en' ? 'Unlimited questions' : 'Preguntas ilimitadas'}</li>
                       <li>✓ {lang === 'en' ? 'All 4 modes' : 'Los 4 modos'}</li>
+                      <li>✓ {lang === 'en' ? 'Scholarship finder' : 'Buscador de becas'}</li>
                       <li>✓ {lang === 'en' ? 'Essay feedback' : 'Retroalimentación de ensayos'}</li>
                       <li>✓ {lang === 'en' ? 'Live salary & college data' : 'Datos de salarios y universidades'}</li>
                       <li>✓ {lang === 'en' ? 'Cancel anytime' : 'Cancela cuando quieras'}</li>
