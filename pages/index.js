@@ -425,7 +425,7 @@ export default function GoalGardenAI() {
                   <div className="contact-success">
                     <div className="contact-success-icon">✓</div>
                     <h3>{lang === 'en' ? 'Message sent!' : '¡Mensaje enviado!'}</h3>
-                    <p>{lang === 'en' ? 'We'll be in touch within 1 business day.' : 'Te contactaremos en 1 día hábil.'}</p>
+                    <p>{lang === 'en' ? "We'll be in touch within 1 business day." : 'Te contactaremos en 1 día hábil.'}</p>
                   </div>
                 ) : (
                   <form className="contact-form" onSubmit={e => {
