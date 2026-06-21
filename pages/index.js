@@ -290,10 +290,10 @@ export default function GoalGardenAI() {
   return (
     <>
       <Head>
-        <title>GoalGardenAI — Career, College & Essay Guide for High School Students</title>
+        <title>goalgarden. — AI Career & College Guide for High School Students</title>
         <meta name="description" content="Free AI guidance for high school students on careers, college planning, essay feedback, and interview prep. Bilingual English & Spanish." />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2216%22 fill=%22%23E8453C%22/><text y=%22.82em%22 x=%2250%25%22 text-anchor=%22middle%22 font-size=%2272%22 font-family=%22system-ui%22 fill=%22white%22 font-weight=%22900%22>g</text></svg>" />
       </Head>
 
       <div className="app">
@@ -301,8 +301,7 @@ export default function GoalGardenAI() {
         {/* ── HEADER ── */}
         <header className="header">
           <div className="header-logo" onClick={resetChat}>
-            <div className="logo-mark">🌱</div>
-            <span className="logo-text">GoalGarden<span>AI</span></span>
+            <span className="logo-text">goalgarden<span>.</span></span>
           </div>
           <div className="header-right">
             <button className="lang-btn" onClick={() => setLang(l => l === 'en' ? 'es' : 'en')}>
