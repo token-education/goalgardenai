@@ -193,6 +193,8 @@ export default function GoalGardenAI() {
   const [streaming, setStreaming]     = useState('');
   const [questionsUsed, setQuestionsUsed] = useState(0);
   const [showPaywall, setShowPaywall] = useState(false);
+  const [contactForm, setContactForm] = useState({ name: '', email: '', org: '', role: '', topic: '', message: '' });
+  const [contactSent, setContactSent] = useState(false);
 
   const messagesEndRef = useRef(null);
   const inputRef       = useRef(null);
@@ -386,40 +388,111 @@ export default function GoalGardenAI() {
               <div className="partnership-inner">
                 <p className="section-label">{lang === 'en' ? 'Work with us' : 'Trabaja con nosotros'}</p>
                 <h2>
-                  {lang === 'en' ? 'Bring GoalGarden to your school or district.' : 'Lleva GoalGarden a tu escuela o distrito.'}
+                  {lang === 'en' ? 'GoalGarden is for every student.' : 'GoalGarden es para cada estudiante.'}
                 </h2>
                 <p>
                   {lang === 'en'
-                    ? "We're partnering with schools, counselors, and districts who want to give every student access to real college and career guidance — in English and Spanish."
-                    : 'Nos estamos asociando con escuelas, consejeros y distritos que quieren dar a cada estudiante acceso a orientación real sobre universidad y carreras — en inglés y español.'}
+                    ? "Whether you're a counselor, a district leader, or a parent guiding your child at home — we'd love to work with you."
+                    : 'Ya seas consejero, líder de distrito o padre guiando a tu hijo en casa — nos encantaría trabajar contigo.'}
                 </p>
 
                 <div className="partnership-options">
                   <div className="partnership-option">
                     <div className="partnership-option-icon">🏫</div>
                     <div>
-                      <h3>{lang === 'en' ? 'School & Counselor Access' : 'Acceso Escolar y de Consejero'}</h3>
-                      <p>{lang === 'en' ? 'Classroom licenses for counselors and college advisors. Bilingual, no setup required.' : 'Licencias de aula para consejeros y asesores universitarios. Bilingüe, sin configuración.'}</p>
+                      <h3>{lang === 'en' ? 'Schools & Counselors' : 'Escuelas y Consejeros'}</h3>
+                      <p>{lang === 'en' ? 'Classroom access for counselors and college advisors. Bilingual, no setup required.' : 'Acceso de aula para consejeros y asesores. Bilingüe, sin configuración.'}</p>
                     </div>
                   </div>
                   <div className="partnership-option">
                     <div className="partnership-option-icon">🌎</div>
                     <div>
-                      <h3>{lang === 'en' ? 'District Partnerships' : 'Asociaciones con Distritos'}</h3>
-                      <p>{lang === 'en' ? 'Custom rollouts for districts serving underrepresented students. Reach out to learn more.' : 'Implementaciones personalizadas para distritos que atienden estudiantes subrepresentados.'}</p>
+                      <h3>{lang === 'en' ? 'Districts' : 'Distritos'}</h3>
+                      <p>{lang === 'en' ? 'Custom rollouts for districts serving underrepresented students.' : 'Implementaciones para distritos que atienden a estudiantes subrepresentados.'}</p>
+                    </div>
+                  </div>
+                  <div className="partnership-option">
+                    <div className="partnership-option-icon">🏡</div>
+                    <div>
+                      <h3>{lang === 'en' ? 'Families & Homeschool' : 'Familias y Educación en Casa'}</h3>
+                      <p>{lang === 'en' ? 'Supporting homeschool students and families navigating college and careers independently.' : 'Apoyando a estudiantes en casa y familias que navegan solos el proceso universitario.'}</p>
                     </div>
                   </div>
                 </div>
 
-                <a
-                  href={`mailto:hello@tokeneduc.com?subject=${encodeURIComponent(lang === 'en' ? 'GoalGarden Partnership Inquiry' : 'Consulta de Asociación con GoalGarden')}`}
-                  className="partnership-cta"
-                >
-                  {lang === 'en' ? 'Get in touch →' : 'Contáctanos →'}
-                </a>
-                <p className="partnership-note">
-                  {lang === 'en' ? 'We respond within 1 business day.' : 'Respondemos en 1 día hábil.'}
-                </p>
+                {/* Contact form */}
+                {contactSent ? (
+                  <div className="contact-success">
+                    <div className="contact-success-icon">✓</div>
+                    <h3>{lang === 'en' ? 'Message sent!' : '¡Mensaje enviado!'}</h3>
+                    <p>{lang === 'en' ? 'We'll be in touch within 1 business day.' : 'Te contactaremos en 1 día hábil.'}</p>
+                  </div>
+                ) : (
+                  <form className="contact-form" onSubmit={e => {
+                    e.preventDefault();
+                    const { name, email, org, role, topic, message } = contactForm;
+                    const subject = encodeURIComponent(lang === 'en' ? 'GoalGarden Partnership Inquiry' : 'Consulta de Asociación con GoalGarden');
+                    const body = encodeURIComponent(
+                      `Name: ${name}\nEmail: ${email}\nOrganization: ${org}\nRole: ${role}\nTopic: ${topic}\n\n${message}`
+                    );
+                    window.location.href = `mailto:hello@tokeneduc.com?subject=${subject}&body=${body}`;
+                    setContactSent(true);
+                  }}>
+                    <div className="contact-row">
+                      <div className="contact-field">
+                        <label>{lang === 'en' ? 'Full Name' : 'Nombre completo'}</label>
+                        <input required placeholder={lang === 'en' ? 'Your name' : 'Tu nombre'} value={contactForm.name}
+                          onChange={e => setContactForm(f => ({ ...f, name: e.target.value }))} />
+                      </div>
+                      <div className="contact-field">
+                        <label>{lang === 'en' ? 'Email' : 'Correo electrónico'}</label>
+                        <input required type="email" placeholder={lang === 'en' ? 'you@school.edu' : 'tu@escuela.edu'} value={contactForm.email}
+                          onChange={e => setContactForm(f => ({ ...f, email: e.target.value }))} />
+                      </div>
+                    </div>
+                    <div className="contact-row">
+                      <div className="contact-field">
+                        <label>{lang === 'en' ? 'School / Organization' : 'Escuela / Organización'}</label>
+                        <input placeholder={lang === 'en' ? 'Your school or district' : 'Tu escuela o distrito'} value={contactForm.org}
+                          onChange={e => setContactForm(f => ({ ...f, org: e.target.value }))} />
+                      </div>
+                      <div className="contact-field">
+                        <label>{lang === 'en' ? 'Your Role' : 'Tu rol'}</label>
+                        <select value={contactForm.role} onChange={e => setContactForm(f => ({ ...f, role: e.target.value }))}>
+                          <option value="">{lang === 'en' ? 'Select your role' : 'Selecciona tu rol'}</option>
+                          <option>{lang === 'en' ? 'School Counselor' : 'Consejero Escolar'}</option>
+                          <option>{lang === 'en' ? 'College Advisor' : 'Asesor Universitario'}</option>
+                          <option>{lang === 'en' ? 'Teacher' : 'Maestro/a'}</option>
+                          <option>{lang === 'en' ? 'District Administrator' : 'Administrador de Distrito'}</option>
+                          <option>{lang === 'en' ? 'Parent / Guardian' : 'Padre / Tutor'}</option>
+                          <option>{lang === 'en' ? 'Homeschool Educator' : 'Educador en Casa'}</option>
+                          <option>{lang === 'en' ? 'Student' : 'Estudiante'}</option>
+                          <option>{lang === 'en' ? 'Other' : 'Otro'}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="contact-field">
+                      <label>{lang === 'en' ? 'How can GoalGarden help?' : '¿Cómo puede ayudar GoalGarden?'}</label>
+                      <select value={contactForm.topic} onChange={e => setContactForm(f => ({ ...f, topic: e.target.value }))}>
+                        <option value="">{lang === 'en' ? 'Select a topic' : 'Selecciona un tema'}</option>
+                        <option>{lang === 'en' ? 'School or classroom access' : 'Acceso escolar o de aula'}</option>
+                        <option>{lang === 'en' ? 'District partnership' : 'Asociación con distrito'}</option>
+                        <option>{lang === 'en' ? 'Homeschool / family access' : 'Acceso familiar / educación en casa'}</option>
+                        <option>{lang === 'en' ? 'Demo request' : 'Solicitud de demostración'}</option>
+                        <option>{lang === 'en' ? 'General question' : 'Pregunta general'}</option>
+                      </select>
+                    </div>
+                    <div className="contact-field">
+                      <label>{lang === 'en' ? 'Tell us about your situation (optional)' : 'Cuéntanos sobre tu situación (opcional)'}</label>
+                      <textarea rows={3} placeholder={lang === 'en' ? 'Grade levels, student population, what you\'re working on...' : 'Niveles, población estudiantil, en qué estás trabajando...'} value={contactForm.message}
+                        onChange={e => setContactForm(f => ({ ...f, message: e.target.value }))} />
+                    </div>
+                    <button type="submit" className="contact-submit">
+                      {lang === 'en' ? 'Send Message →' : 'Enviar mensaje →'}
+                    </button>
+                    <p className="partnership-note">{lang === 'en' ? 'We respond within 1 business day.' : 'Respondemos en 1 día hábil.'}</p>
+                  </form>
+                )}
               </div>
             </section>
 
